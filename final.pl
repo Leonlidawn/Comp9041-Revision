@@ -79,7 +79,7 @@ $last_element = pop @a;
 @b = sort(@a);	#sort array
 shift @a;	#dele left first
 unshift @a,7;	#add from left first
-
+sdf
 
 
 
@@ -87,7 +87,7 @@ unshift @a,7;	#add from left first
 #split array
 #===========
 $split_string="e q r 2 3 4 r w r";
-@split_array=split " ",$split_string;
+@split_array=split / /,$split_string;
 foreach $a (@split_array){
 	print $a."#";
 }
