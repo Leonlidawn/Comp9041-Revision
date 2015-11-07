@@ -143,11 +143,12 @@ delimiter(s).
      ters are specified by the -t option, the collating sequence should be the same as sort(1)
      without the -b option.
 =========sed===========
+
+sed -r 's/^[ \t]*//g'   # -r for extended regex 
 backslash          \\
 carriage-return    \r
 tab                \t
--E      Interpret extended regular expressions
-             
+
 ==========uniq=========
      -c      Precede each output line with the count of the number of times
              the line occurred in the input, followed by a single space.
@@ -171,6 +172,11 @@ tab                \t
      -i      Case insensitive comparison of lines.
 =====find======
 find starts from the current directory by default
+==================assigning variables=============
+variable on the left-hand side of = is 'naked'/without $.
+no space before and after =, otherwise use of =`blah` will go wrong
+count=0
+b=$count
 =====read======
 read var #takes input from keyboard then assign it to the variable.
 ========Execution flow =============
@@ -195,10 +201,9 @@ commandList # ... generally involving var
 don
 
 for file in * #loop 当前目录的文件名
-=================
-
+for file in `ls * | sort -n` #loop 命令行output, ls * 会额外显示当前目录folders里面的文件，比 ls 深入一层。
+========echo========
 echo -n means not print "\n" at the end of the line.
-
 ===========test=============
 'expr blah' makes it to be an expression
 string comparison ( = != )
