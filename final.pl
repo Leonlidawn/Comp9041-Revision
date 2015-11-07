@@ -59,6 +59,16 @@ while ($line=<>) {
 	print join("|",@a),"\n";
 }
 
+#==========file 内e加(),(e)========
+#% a.out file e
+open F,"<$ARGV[0]" or die;
+@a=<F>;
+foreach $line (@a) {
+	if ($line=~/$ARGV[1]/) {
+		$line=~s/$ARGV[1]/($ARGV[1])/g;
+		print $line;
+	}
+}
 
 
 #==========================
