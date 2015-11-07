@@ -109,18 +109,70 @@ delimiter(s).
 -s effect:1	2	3a	b	c
 -d  circularly use listed characters to replace the newline characters instead of the default tab. 
 ======sort=======
--r sort in descending order (reverse sort) eg. e d c b a
--n sort numerically rather than lexicographically eg. a2 b c d 2 3 4 5 6
--d dictionary order: ignore non-letters and non-digits 
--t’c’ use character c to separate columns (default: space)
--kn’ sort on column n
-Note: the ’ ’ around the separator char are usually not necessary, but
-are useful to prevent the shell from mis-interpreting shell meta-characters
-such as ’|’.
-Hint: to specify TAB as the field delimiter with an interactive shell like
-bash, type CTRL-v before pressing the TAB key.
+-r #sort in descending order (reverse sort) eg. e d c b a
+-n #sort numerically rather than lexicographically eg. a2 b c d 2 3 4 5 6
+-d #dictionary order: ignore non-letters and non-digits 
+-t’c’ #use character c to separate columns (default: space)
+-kn #sort on column n
+#Note: the ’ ’ around the separator char are usually not necessary, but
+#are useful to prevent the shell from mis-interpreting shell meta-characters
+#such as ’|’.
+#Hint: to specify TAB as the field delimiter with an interactive shell like
+#bash, type CTRL-v before pressing the TAB key.
 ======join=======
+-a file_number
+             In addition to the default output, produce a line for each unpairable line in file file_number.
+-e string
+             Replace empty output fields with string.
+-t char
+             Use character char as a field delimiter for both input and output.  Every occurrence of char in a line is significant.
 
+-v file_number
+             Do not display the default output, but display a line for each unpairable line in file file_number.  
+             The options -v 1 and -v 2 may be specified at the same time.
+
+-1 field
+             Join on the field'th field of file 1.
+
+-2 field
+             Join on the field'th field of file 2.
+
+     When the default field delimiter characters are used, the files to be joined should be ordered
+     in the collating sequence of sort(1), using the -b option, on the fields on which they are to
+     be joined, otherwise join may not report all field matches.  When the field delimiter charac-
+     ters are specified by the -t option, the collating sequence should be the same as sort(1)
+     without the -b option.
 =========sed===========
+
+==========unique=========
 =====find======
 find starts from the current directory by default
+
+========Execution flow =============
+
+
+
+=================
+
+
+
+===========test=============
+string comparison ( = != )
+numeric comparison ( -eq -ne -lt )
+checks on files ( -f -x -r )
+boolean operators ( -a -o ! )
+Examples:
+# does the variable msg have the value "Hello"?
+test "$msg" = "Hello"
+# does x contain a numeric value larger than y?
+test "$x" -gt "$y"
+# Error: expands to "test hello there = Hello"?
+msg="hello there"
+test $msg = Hello
+# is the value of x in range 10..20?
+test "$x" -ge 10 -a "$x" -le 20
+# is the file xyz a readable directory?
+test -r xyz -a -d xyz
+# alternative syntax; requires closing ]
+[ -r xyz -a -d xyz ]
+Note: use of quotes, spaces around values/operators
