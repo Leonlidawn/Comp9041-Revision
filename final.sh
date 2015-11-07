@@ -143,32 +143,74 @@ delimiter(s).
      ters are specified by the -t option, the collating sequence should be the same as sort(1)
      without the -b option.
 =========sed===========
+backslash          \\
+carriage-return    \r
+tab                \t
+-E      Interpret extended regular expressions
+             
+==========uniq=========
+     -c      Precede each output line with the count of the number of times
+             the line occurred in the input, followed by a single space.
 
-==========unique=========
+     -d      Only output lines that are repeated in the input.
+
+     -f num  Ignore the first num fields in each input line when doing compar-
+             isons.  A field is a string of non-blank characters separated
+             from adjacent fields by blanks.  Field numbers are one based,
+             i.e., the first field is field one.
+
+     -s chars
+             Ignore the first chars characters in each input line when doing
+             comparisons.  If specified in conjunction with the -f option, the
+             first chars characters after the first num fields will be
+             ignored.  Character numbers are one based, i.e., the first char-
+             acter is character one.
+
+     -u      Only output lines that are not repeated in the input.
+
+     -i      Case insensitive comparison of lines.
 =====find======
 find starts from the current directory by default
-
+=====read======
+read var #takes input from keyboard then assign it to the variable.
 ========Execution flow =============
+if testList{1}
+then
+commandList{1}
+elif testList{2}
+then
+commandList{2}
+else
+commandList{n}
+fi
 
+while testList
+do
+commandList
+done
+for loops set a variable to successive words from a list:
+for var in wordList
+do
+commandList # ... generally involving var
+don
 
-
+for file in * #loop 当前目录的文件名
 =================
 
-
+echo -n means not print "\n" at the end of the line.
 
 ===========test=============
+'expr blah' makes it to be an expression
 string comparison ( = != )
-numeric comparison ( -eq -ne -lt )
+numeric comparison ( -eq -ne -lt -gt )
 checks on files ( -f -x -r )
 boolean operators ( -a -o ! )
 Examples:
+‘expr $sum + "$n"‘ 
 # does the variable msg have the value "Hello"?
 test "$msg" = "Hello"
 # does x contain a numeric value larger than y?
 test "$x" -gt "$y"
-# Error: expands to "test hello there = Hello"?
-msg="hello there"
-test $msg = Hello
 # is the value of x in range 10..20?
 test "$x" -ge 10 -a "$x" -le 20
 # is the file xyz a readable directory?
@@ -176,3 +218,18 @@ test -r xyz -a -d xyz
 # alternative syntax; requires closing ]
 [ -r xyz -a -d xyz ]
 Note: use of quotes, spaces around values/operators
+ ! expression  True if expression is false.
+
+     expression1 -a expression2
+                   True if both expression1 and expression2 are true.
+
+     expression1 -o expression2
+                   True if either expression1 or expression2 are true.
+
+     (expression)  True if expression is true.
+
+     The -a operator has higher precedence than the -o operator.
+=========================================
+Commands can be grouped using ( ... ) or { ... }
+(cmd1 ; ... cmdn) are executed in a new sub-shell.
+{cmd1 ; ... cmdn } are executed in the current shell.
