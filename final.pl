@@ -51,8 +51,13 @@ while ($line=<>) {
 }
 
 
-#==================================
-
+#===========change part string order==========
+while ($line=<>) {
+	chomp $line;
+	@a=split /\|/,$line;
+	$a[2]=~s/(.*), (.*)/$2 $1/;
+	print join("|",@a),"\n";
+}
 
 
 
