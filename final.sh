@@ -233,3 +233,14 @@ Note: use of quotes, spaces around values/operators
 Commands can be grouped using ( ... ) or { ... }
 (cmd1 ; ... cmdn) are executed in a new sub-shell.
 {cmd1 ; ... cmdn } are executed in the current shell.
+===============renaming a file/directory ===================
+#Rename A File Called /tmp/foo To /tmp/bar
+# create /tmp/foo 这个可以更改文件夹名字
+touch /tmp/foo
+ls -l /tmp/foo
+mv /tmp/foo /tmp/bar
+
+Task: Rename multiple files
+Use rename command renames multiple files. For example rename all *.perl file as *.pl, enter:
+rename .perl .pl *.perl
+#rename 原值 新值 
