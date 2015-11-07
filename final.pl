@@ -1,4 +1,31 @@
 #!/usr/bin/perl -w
+
+#==========practic exam==========
+#=========a.out=============
+#foreach $a (@ARGV) {
+#	$hash{$a}+=1;
+#	if ($hash{$a}<=1) {
+#		$string.=$a." ";
+#	}
+#}
+#$string=~s/ $//g; #dele the end space 
+#print $string;
+#=========a.out_2===========
+#$max_count=0;
+#$max_key="";
+#foreach $a (@ARGV) {
+#	$hash{$a}++;
+#	if ($hash{$a} >$max_count) {
+#		$max_count=$hash{$a};
+#		$max_key=$a;
+#	}
+#}
+#print $max_key;
+#===========
+
+
+
+#=======================
 #while ($line = <>) { 
 #}
 #==========================
@@ -37,6 +64,7 @@
 #	print $a."#";
 #}
 #output:e#q#r#2#3#4#r#w#r#
+#my ($number, $whale) = split(/ /, $line, 2);
 #===========
 #join array
 #===========
@@ -50,3 +78,9 @@
 #==============
 #=======hash===
 #==============
+my %hash =(); #hash name
+$hash{$key}=$value;
+foreach $key (sort keys %hash){
+	print "$hash{$key}\n";
+}
+
