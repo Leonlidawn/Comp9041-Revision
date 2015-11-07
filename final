@@ -9,3 +9,5 @@ while ($ARGV[0]!=0) {
 #==========================open file & file to array
 open(F ,"<$f" ) or die "tail.pl: can't open $f \n";
 my @Lines = <F>;
+#===========
+sys test
