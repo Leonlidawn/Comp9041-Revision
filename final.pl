@@ -10,4 +10,4 @@ while ($ARGV[0]!=0) {
 open(F ,"<$f" ) or die "tail.pl: can't open $f \n";
 my @Lines = <F>;
 #===========
-sys test
+push @files, $element;
