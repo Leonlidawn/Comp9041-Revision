@@ -239,6 +239,11 @@ Commands can be grouped using ( ... ) or { ... }
 (cmd1 ; ... cmdn) are executed in a new sub-shell.
 {cmd1 ; ... cmdn } are executed in the current shell.
 ===============renaming a file/directory ===================
+basename "blah/blah1/file.e" #will give file.e
+basename -s"suffix" "a/b/c/d.suffix" #will give d without particular suffix
+dirname "blah/d/d/e.f" #will give blah/d/d/
+
+
 #Rename A File Called /tmp/foo To /tmp/bar
 # create /tmp/foo 这个可以更改文件夹名字
 touch /tmp/foo
@@ -251,4 +256,3 @@ rename .perl .pl *.perl
 #rename 原值 新值 
 ==============awk=================
 awk -F'|''{print $2}' file
-
