@@ -155,7 +155,7 @@ tab                \t
              the line occurred in the input, followed by a single space.
 
      -d      Only output lines that are repeated in the input.
-
+#忽略前num行
      -f num  Ignore the first num fields in each input line when doing compar-
              isons.  A field is a string of non-blank characters separated
              from adjacent fields by blanks.  Field numbers are one based,
@@ -169,7 +169,7 @@ tab                \t
              acter is character one.
 
      -u      Only output lines that are not repeated in the input.
-
+忽略大小写匹配查找
      -i      Case insensitive comparison of lines.
 =====find======
 find starts from the current directory by default
@@ -199,7 +199,7 @@ for loops set a variable to successive words from a list:
 for var in wordList
 do
 commandList # ... generally involving var
-don
+done
 
 for file in * #loop 当前目录的文件名
 for file in `ls * | sort -n` #loop 命令行output, ls * 会额外显示当前目录folders里面的文件，比 ls 深入一层。
@@ -240,9 +240,9 @@ Commands can be grouped using ( ... ) or { ... }
 (cmd1 ; ... cmdn) are executed in a new sub-shell.
 {cmd1 ; ... cmdn } are executed in the current shell.
 ===============renaming a file/directory ===================
-basename "blah/blah1/file.e" #will give file.e
-basename -s"suffix" "a/b/c/d.suffix" #will give d without particular suffix
-dirname "blah/d/d/e.f" #will give blah/d/d/
+basename "blah/blah1/file.*" #will give file.e
+basename -s "suffix" "a/b/c/d.suffix" #will give d without particular suffix
+dirname "blah/s/d/e.f" #will give blah/d/d/
 
 
 #Rename A File Called /tmp/foo To /tmp/bar
