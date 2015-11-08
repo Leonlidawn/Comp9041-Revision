@@ -176,7 +176,14 @@ foreach $key (sort keys %hash){
 }
 
 
-
+#=======write in file=======
+open F,'>>filename.txt' or die;
+#  >> write from button
+#  > rewrite
+for (1..6){
+print F "askjflkshadfl'khaslhhello\n";
+}
+close F;
 
 
 #===================

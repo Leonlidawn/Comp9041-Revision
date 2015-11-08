@@ -35,7 +35,6 @@ if(($username) && ($password)){
 	}
 	
 }else{
-	
 	print start_form, "\n";
 	print "Username :\n", textfield('username'), "\n" if(!$username);
 	print "Password :\n", textfield('password'), "\n" if(!$password);
