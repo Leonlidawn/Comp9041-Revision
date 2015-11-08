@@ -249,3 +249,6 @@ Task: Rename multiple files
 Use rename command renames multiple files. For example rename all *.perl file as *.pl, enter:
 rename .perl .pl *.perl
 #rename 原值 新值 
+==============awk=================
+awk -F'|''{print $2}' file
+
