@@ -70,6 +70,32 @@ foreach $line (@a) {
 	}
 }
 
+#========student fine==========
+$max_nu=0;
+$max_name="";
+
+while (1) {
+	print "Enter student name: ";
+	$name=<>;
+	chomp $name;
+	if (!$name) {
+		last;
+	}else {
+		print "Enter fine: ";
+		$fine=<>;
+		$total_fine{$name} += $fine;
+	}
+	if($total_fine{$name}>$max_nu){
+		$max_nu=$total_fine{$name};
+		$max_name=$name;
+	}
+}
+print "\nExpel $max_name whose library fines total \$$max_nu\n";
+
+
+
+
+
 
 #==========================
 while ($ARGV[0]!=0) {
