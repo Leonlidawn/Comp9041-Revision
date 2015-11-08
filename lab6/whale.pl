@@ -14,8 +14,8 @@ while($line = <STDIN>){
 	
 	chomp $line;
 	
-	if($line =~ m/.* $name/g){
-		$line =~ m/\s?([0-9]+)/;
+	if($line =~ /.* $name/g){
+		$line =~ /\s?([0-9]+)/;
 		$numInd += $1; 
  		$numPod++;
 	}

@@ -1,11 +1,14 @@
 #!/bin/sh
 echo Content-type: text/html
+
 echo
 
-host_address=`host $REMOTE_ADDR 2>&1|grep Name|sed 's/.*: *//'`
+#host_address=`host $REMOTE_ADDR 2>&1|grep Name|sed 's/.*: *//'`
 
 cat <<eof
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
 <title>Webserver IP, Host and Software</title>
@@ -21,4 +24,6 @@ Your browser identifies as: <b>$HTTP_USER_AGENT</b>
 
 </body>
 </html>
+
+
 eof

@@ -97,7 +97,12 @@ print "\nExpel $max_name whose library fines total \$$max_nu\n";
 
 #===========lab_5=============
 # open file
+# Escape Key is \e\n
+#(scalar @files) length
 
+
+print rand(1);#used as array index $array[rand(7)] will be int 
+mark shuffing
 
 
 
@@ -124,7 +129,15 @@ $last_element = pop @a;
 @b = sort(@a);	#sort array
 shift @a;	#dele left first
 unshift @a,7;	#add from left first
-sdf
+
+@words;
+$total +=  $#words+1;
+array length increse
+
+
+for (1..11) {
+	print $_;
+}
 
 
 
@@ -145,8 +158,13 @@ $new_split_string=join ",",@split_array;
 print $new_split_string;
 #output:e,q,r,2,3,4,r,w,r
 
-
-
+foreach $a (array) {
+	print $a;
+}
+equal to
+for (array) {
+	print $_;
+}
 
 #==============
 #=======hash===
@@ -157,3 +175,48 @@ foreach $key (sort keys %hash){
 	print "$hash{$key}\n";
 }
 
+
+
+
+
+#===================
+#========wget=======
+#===================
+pen F, "wget -q -O- http://www.timetable.unsw.edu.au/current/$ARGV[0]KENS.html|" or die;
+
+
+
+
+
+#========================
+#========html frame======
+#========================
+#!/bin/sh
+echo Content-type: text/html
+
+echo
+
+host_address=`host $REMOTE_ADDR 2>&1|grep Name|sed 's/.*: *//'`
+
+cat <<eof
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+<title>Webserver IP, Host and Software</title>
+
+</head>
+<body>
+
+Your browser is running at IP address:  <b>$SERVER_ADDR</b>
+<p>
+Your browser is running on hostname:  <b>$HTTP_HOST</b>
+<p>
+Your browser identifies as: <b>$HTTP_USER_AGENT</b>
+
+</body>
+</html>
+
+
+eof
