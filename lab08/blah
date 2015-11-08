@@ -1,0 +1,20 @@
+Test courses_0 (./courses.pl VISN) - passed
+Test courses_1 (./courses.pl SENG) - passed
+Test courses_2 (./courses.pl ENGG) - passed
+Test lectures_0 (./lectures.pl COMP2041) - passed
+Test lectures_1 (./lectures.pl COMP1927) - passed
+Test lectures_2 (./lectures.pl PSYC1011 COMP9024 COMP3231) - passed
+Test lectures_3 (./lectures.pl COMP1911 COMP1917 COMP1921 COMP1927 ENGG1811) - passed
+Test lectures_d_0 (./lectures.pl -d COMP2041) - passed
+Test lectures_d_1 (./lectures.pl -d COMP1927) - passed
+Test lectures_d_2 (./lectures.pl -d PSYC1011 COMP9024 COMP3231) - passed
+Test lectures_d_3 (./lectures.pl -d COMP1911 COMP1917 COMP1921 COMP1927 ENGG1811) - passed
+Test lectures_t_0 (./lectures.pl -t COMP2041) - passed
+Test lectures_t_1 (./lectures.pl -t COMP1927) - passed
+Test lectures_t_2 (./lectures.pl -t PSYC1011 COMP9024 COMP3231) - passed
+Test lectures_t_3 (./lectures.pl -t COMP9020 COMP9021 COMP9024) - passed
+Test lectures_t_4 (./lectures.pl -t COMP1911 COMP1917 COMP1921 COMP1927 ENGG1811) - passed
+Test lectures_t_5 (./lectures.pl -t COMP1911 COMP2041 COMP2121 COMP3121 COMP3311 COMP3331 COMP4121 COMP3421 COMP9020 COMP9021 COMP9024) - passed
+
+** All tests passed. You are amazing!
+

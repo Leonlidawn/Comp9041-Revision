@@ -1,0 +1,50 @@
+/*use border to "activate effects" in a new division.*/
+
+.allText{
+   margin: 0;
+   position: absolute;               /* 2 */
+   bottom: 10%; 
+   left: 42%;                        /* 3 */
+   transform: translate(0, -70%)
+}
+.sec1{
+
+ color: yellow;
+ border : 3px solid blue;
+
+}
+
+.sec2{	
+
+	 color: red;
+	font-size:20px;
+
+}
+
+.sec3{
+      
+ 	color: rgb(40,150,250);
+	font-size:14px;
+
+ }
+
+.secMiddle{
+  margin: 0;
+   position: absolute;               /* 2 */
+   top: 75%; 
+   left: 43%;                        /* 3 */
+   transform: translate(0, -70%)
+ }
+
+body{
+color: white;
+ background-image : url('http://cdn4.dualshockers.com/wp-content/uploads/2013/06/Final-Fantasy-XV-6.jpg') ;
+width: 100%; 
+	text-align: center;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size:  cover;       
+ border: 10px
+
+}

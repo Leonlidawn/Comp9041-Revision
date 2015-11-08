@@ -1,0 +1,46 @@
+#!/usr/bin/perl -w
+#ensure arguments are correctly used
+die "Usage: ./courses.pl <COURSENAME>, optional flags: t or f.\n" if ($#ARGV+1 < 1);
+
+for(@ARGV){
+	if($_ =~ /-t$/){
+		$tf =1;
+	}
+	elsif($_ =~ /-d$/){
+		$df =1;
+	}
+	elsif($_ =~ /[A-Z]{4}[0-9]{4}/){
+		push @course, $_;
+	} 
+}
+
+
+for $c (@course) {
+	$url =  "http://www.timetable.unsw.edu.au/current/$c.html";
+	open $P, "wget -q -O- $url|" or die $!;
+	&ntable($url,$c,$P) if(!($tf || $df));
+	close $P;
+}
+#..------------------------------------------------------------------------------
+#ccode:(sameline with ccode:)semester wday timeperiod (weeksperiod), samething...
+sub ntable{#CHECKED
+	(my $link, my $course, my $Page) = @_;
+	while($line = <$Page>){
+		 #irrelevant details 
+		last if($line =~ /CLASSES - Detail/);
+		if ($line =~ /<td class="data"><a href="#([SX][12])-[0-9]{4}">Lecture<\/a><\/td>/){
+			$sem = $1;
+			 #$skip 5 lines and read the following line
+			$line = <$Page> for(1..6) ;
+			 #<td class="data">Mon 14:00 - 16:00 (Weeks:1-9,10-12), Wed 17:00 - 18:00 (Weeks:1-9,10-12)</td>
+			$line =~ s/ *<td class="data">//; 
+			$line =~ s/<\/td>//;
+			chomp $line;
+			 #if it is not web stream which has no info in this line. 
+			print("$course: $sem $line\n") if ($line); 
+				
+			
+		}
+		
+	}
+}

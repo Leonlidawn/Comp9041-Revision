@@ -1,0 +1,152 @@
+#!/usr/bin/perl -w
+#ensure arguments are correctly used
+die "Usage: ./courses.pl <COURSENAME>, optional flags: t or f.\n" if ($#ARGV+1 < 1);
+
+for(@ARGV){
+	if($_ =~ /-t$/){
+		$tf =1;
+	}
+	elsif($_ =~ /-d$/){
+		$df =1;
+	}
+	elsif($_ =~ /[A-Z]{4}[0-9]{4}/){
+		push @course, $_;
+	} 
+}
+
+
+#new hash table for new semester
+	#it is assumed that S1,S2,X1 represents sems.
+	for $h("09","10","11","12","13","14","15","16","17","18","19","20"){
+		for $d("Mon","Tue","Wed","Thu","Fri"){
+			$S1{"$h:00"}{$d} = 0;
+		}
+	}
+	#print"first loop done\n";
+	for $i ("09","10","11","12","13","14","15","16","17","18","19","20"){
+		for $d("Mon","Tue","Wed","Thu","Fri"){
+			$S2{"$i:00"}{$d} = 0;
+		}
+	}
+	#print"second loop done\n";
+	for $h("09","10","11","12","13","14","15","16","17","18","19","20"){
+		for $d("Mon","Tue","Wed","Thu","Fri"){
+			$X1{"$h:00"}{$d} = 0;
+		}
+	}
+
+
+
+for $c (@course) {
+	$url =  "http://www.timetable.unsw.edu.au/current/$c.html";
+	open $P, "wget -q -O- $url|" or die $!;
+
+	#print"third loop done\n";
+	
+	&ttable($url,$c,$P) if(!($tf || $df));
+	close $P;
+}
+
+#if(tf){$sem{"$hr:00"}{$day}
+if($s1){
+	print"S1       Mon   Tue   Wed   Thu   Fri\n";
+	for $h("09","10","11","12","13","14","15","16","17","18","19","20"){
+		print("$h:00");
+		for $d("Mon","Tue","Wed","Thu","Fri"){
+			if($S1{"$h:00"}{$d} == 0){
+				print "      "; 
+			}
+			else{
+				print "     ".$S1{"$h:00"}{$d} ;
+			}
+		}
+		print"\n";
+	}
+}
+if($s2){
+	print"S2       Mon   Tue   Wed   Thu   Fri\n";
+	for $h("09","10","11","12","13","14","15","16","17","18","19","20"){
+		print("$h:00");
+		for $d("Mon","Tue","Wed","Thu","Fri"){
+			if($S2{"$h:00"}{$d} == 0){
+				print "      "; 
+			}
+			else{
+				print "     ".$S2{"$h:00"}{$d} ;
+			}
+		}
+		print"\n";
+	}
+}
+if($x1){
+	print"X1       Mon   Tue   Wed   Thu   Fri\n";
+	for $h("09","10","11","12","13","14","15","16","17","18","19","20"){
+		print("$h:00");
+		for $d("Mon","Tue","Wed","Thu","Fri"){
+			if($X1{"$h:00"}{$d} == 0){
+				print "      "; 
+			}
+			else{
+				print "     ".$X1{"$h:00"}{$d} ;
+			}
+		}
+		print"\n";
+	}
+}
+
+#..------------------------------------------------------------------------------
+#semester\t    Mon   Tue   Wed   Thu   Fri\n
+#timehour     occurenceMon occurenceTue blablabla\n 
+sub ttable{
+	(my $link, my $course, my $Page) = @_;
+	while($line = <$Page>){
+		last if($line =~ /CLASSES - Detail/);
+		if ($line =~ /<td class="data"><a href="#([SX][12])-[0-9]{4}">Lecture<\/a><\/td>/){
+			$sem = $1;
+			$line = <$Page> for(1..6) ;
+			$line =~ s/ *<td class="data">//;
+			$line =~ s/<\/td>//;
+			if (!($line)){
+				next;
+			} 
+			$line =~ s/ \(Weeks:[^)]*\)//g;
+			$line =~ s/:00//g;
+			$line =~ s/- //g;
+			chomp $line;
+			@data = split(", ",$line); 
+			for $x (@data){
+			
+				if($x =~ /^[A-Z][a-z]{2}$/){
+					push @lazy, $x;
+					next;
+				}
+				($day,$start,$end) = split(" ", $x);
+				$hr = scalar $start;
+				if(@lazy){
+					for (@lazy){
+						while ($hr < scalar $end){
+							if($sem eq "S1"){$S1{"$hr:00"}{$day}++;}
+							elsif($sem eq "S2"){$S2{"$hr:00"}{$day}++;}
+							else{$X1{"$hr:00"}{$day}++;}
+							$hr++;
+						}
+						$hr = scalar $start; 
+					}
+					@lazy = ();
+				}
+				while ($hr < scalar $end){
+					if($sem eq "S1"){$S1{"$hr:00"}{$day}++; $s1 += 1;}
+					elsif($sem eq "S2"){$S2{"$hr:00"}{$day}++; $s2 += 1;}
+					else{$X1{"$hr:00"}{$day}++; $x1 += 1;}
+					$hr++;
+					#print($S1{"11:00"}{$day}."------\n");
+					
+				} 
+				
+			}#print($S1{"11:00"}{$day}."------\n");
+		}	
+	}
+	 
+}
+
+
