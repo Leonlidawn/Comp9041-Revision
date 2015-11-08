@@ -150,6 +150,7 @@ carriage-return    \r
 tab                \t
 
 ==========uniq=========
+#相邻相同行，常先sort
      -c      Precede each output line with the count of the number of times
              the line occurred in the input, followed by a single space.
 
